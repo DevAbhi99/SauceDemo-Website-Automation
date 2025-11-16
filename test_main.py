@@ -37,11 +37,15 @@ opts.add_argument("--disable-quic")
 # Accept intercepted/self-signed certs if present
 opts.set_capability("acceptInsecureCerts", True)
 opts.add_argument("--incognito")
+# Docker/Jenkins compatibility options
+opts.add_argument("--headless")
+opts.add_argument("--no-sandbox")
+opts.add_argument("--disable-dev-shm-usage")
+opts.add_argument("--disable-gpu")
+opts.add_argument("--window-size=1920,1080")
 
-
-service=Service(executable_path='chromedriver.exe')
-
-driver=webdriver.Chrome(service=service, options=opts)
+# Use system chromedriver (no hardcoded path needed)
+driver=webdriver.Chrome(options=opts)
 
 obj1=LoginControllers(driver)
 
@@ -121,7 +125,7 @@ def user_navigates_to_description_page():
 
     time.sleep(2)
 
-    driver.save_screenshot('scnreeshots/checkout.png')
+    driver.save_screenshot('screenshots/checkout.png')
 
 
 @when('the user is navigated to final checkout page and the user clicks on the Back home button')
