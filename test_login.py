@@ -30,10 +30,9 @@ opts.add_argument("--disable-dev-shm-usage")
 opts.add_argument("--disable-gpu")
 opts.add_argument("--window-size=1920,1080")
 
-service=Service(executable_path='chromedriver.exe')
 
 # Use system chromedriver (no hardcoded path needed)
-driver=webdriver.Chrome(service=service, options=opts)
+driver=webdriver.Chrome(options=opts)
 
 
 obj1=LoginControllers(driver)
